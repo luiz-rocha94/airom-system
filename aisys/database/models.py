@@ -19,10 +19,11 @@ class Table:
     def __init__(self, table):
         self.table = table
 
-    def import_data(self, csv_file):
-        data = pd.read_csv(csv_file)
-        #data.fillna(value=None, inplace=True)
-        #data.rename(columns={'old':'new'}, inplace=True)
+    def from_data(self, csv_file, *args, **kwargs):
+        """
+        Read csv_file, uses pandas read_csv args and kwargs.
+        """
+        data = pd.read_csv(csv_file, *args, **kwargs)
         batch_size = 100
         objs = (self.table(**row) for index, row in data.iterrows())
         while True:
@@ -31,7 +32,10 @@ class Table:
                 break
             self.table.objects.bulk_create(batch, batch_size)
 
-    def export_data(self):
-        values = self.table.objects.values()
+    def to_data(self, **kwargs):
+        """
+        Transform data to dataframe, uses django objects filter kwargs.
+        """
+        values = self.table.objects.filter(**kwargs).values()
         data = pd.DataFrame(values)
         return data
