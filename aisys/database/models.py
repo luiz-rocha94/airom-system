@@ -21,7 +21,7 @@ class Table:
 
     def from_data(self, csv_file, *args, **kwargs):
         """
-        Read csv_file, uses pandas read_csv args and kwargs.
+        Import .csv file, uses pandas read_csv args and kwargs.
         """
         data = pd.read_csv(csv_file, *args, **kwargs)
         batch_size = 100
@@ -34,7 +34,7 @@ class Table:
 
     def to_data(self, **kwargs):
         """
-        Transform data to dataframe, uses django objects filter kwargs.
+        Export table data, uses django objects filter kwargs.
         """
         values = self.table.objects.filter(**kwargs).values()
         data = pd.DataFrame(values)
