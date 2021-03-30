@@ -19,6 +19,6 @@ class FilterViewSet(viewsets.ModelViewSet):
         return queryset
 
 
-class UsedCarViewSet(FilterViewSet):
-    queryset = models.UsedCar.objects.all()
-    serializer_class = serializers.UsedCarSerializer
+class HeartFailureViewSet(FilterViewSet):
+    queryset = models.HeartFailure.objects.all()
+    serializer_class = serializers.HeartFailureSerializer

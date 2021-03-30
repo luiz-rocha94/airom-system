@@ -1,13 +1,16 @@
 # airom-system
 Python 3.7 application with Django webframework and MariaDB DataBase
 
-##Install and configure MariaDB
+## Install python libs 
+pip install -r requirements.txt
+
+## Install and configure MariaDB
 user: root\
 password: pass\
 INSTALL SONAME 'ha_connect';
 
-##Install python libs 
-pip install -r requirements.txt
+## Create tables in django models or import from database.
+python manage.py inspectdb > models.py
 
 ##Configure MindsDB
 see mindsdb/config.json\

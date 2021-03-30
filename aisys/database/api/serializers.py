@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .. import models
 
 
-class UsedCarSerializer(serializers.ModelSerializer):
+class HeartFailureSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.UsedCar
+        model = models.HeartFailure
         fields = '__all__'
