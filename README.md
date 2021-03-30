@@ -12,9 +12,17 @@ INSTALL SONAME 'ha_connect';
 ## Create tables in django models or import from database.
 python manage.py inspectdb > models.py
 
+## Import data to table.
+
+
 ##Configure MindsDB
 see mindsdb/config.json\
 python -m mindsdb --api=http,mysql --config=config.json\
+
+INSERT INTO mindsdb.predictors(name, predict, select_data_query) 
+VALUES ('database_heart_model', 'death_event', 
+'SELECT * FROM db_aisys.database_heart_failure');
+
 
 No module mindsdb_worker
 No module python-Levenshtein
