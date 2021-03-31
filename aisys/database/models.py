@@ -18,3 +18,4 @@ class HeartFailure(models.Model):
 
     class Meta:
         db_table = 'heart_failure'
+        app_label = 'database'
