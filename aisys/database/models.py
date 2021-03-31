@@ -15,3 +15,6 @@ class HeartFailure(models.Model):
     smoking = models.IntegerField()
     time = models.IntegerField()
     death_event = models.IntegerField()
+
+    class Meta:
+        db_table = 'heart_failure'
