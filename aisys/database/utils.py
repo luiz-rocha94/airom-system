@@ -24,12 +24,3 @@ def table_export(table, csv_file, **kwargs):
     values = table.table.objects.filter(**kwargs).values()
     data = pd.DataFrame(values)
     return data.to_csv(csv_file)
-
-
-def heart_failure_model(data):
-    # Connect to MindsDB Server URL
-    mdb = SDK('http://127.0.0.1:47334')
-
-    # predict
-    result = mdb.predictors('heart_failure_model').predict(data)
-    return result[0]['death_event']['class_distribution']

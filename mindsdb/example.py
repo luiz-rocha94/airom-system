@@ -4,9 +4,9 @@ from mindsdb_sdk import SDK
 # Connect to MindsDB Server URL
 mdb = SDK('http://127.0.0.1:47334')
 
-# Create datasource, fail
-#source = {'query': 'select * from database_heartfailure'}
-#mdb.datasources['heart_failure'] = source
+# Create datasource
+file = r'D:\archive\heart_failure_clinical_records_dataset.csv'
+mdb.datasources['heart_failure'] = {'file': file}
 
 # learn from database
 mdb.predictors.learn('heart_failure_model',
