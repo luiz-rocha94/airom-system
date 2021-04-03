@@ -6,6 +6,7 @@ pip install -r requirements.txt
 
 ## Install and configure MariaDB 10.5
 https://mariadb.org/download/
+
 > UTF8 as default\
 > user: root\
 > password: pass
@@ -15,11 +16,11 @@ in MySQL Client MariaDB 10.5
 
 ## Create database.
 in MySQL Client MariaDB 10.5
-> MariaDB [(none)]> CREATE DATABASE 'db_aisys';\
-> MariaDB [(none)]> CREATE DATABASE 'db_base'; 
+> MariaDB [(none)]> CREATE DATABASE db_aisys;\
+> MariaDB [(none)]> CREATE DATABASE db_base; 
 
-## User and password settings
-aisys.aisys.settings
+## Check user and password settings
+aisys/aisys/settings.py
 > DATABASES = ...
 
 ## Create table.
@@ -30,6 +31,7 @@ in terminal
 > python manage.py migrate 
 
 ## Import data to table.
+download data\
 https://www.kaggle.com/andrewmvd/heart-failure-clinical-data
 
 in terminal
@@ -40,18 +42,36 @@ in terminal
 > file = r'heart_failure_clinical_records_dataset.csv'\
 > table_import(HeartFailure, file)
 
-## MindsDB
-user and password settings > mindsdb/config.json\
+# REST API
+in terminal
+
+> python manage.py runserver
+
+acess rest api\
+http://127.0.0.1:8000/api/heart_failure/
+
+# MindsDB
+
+## Configure
+### Check user, password and storage settings
+mindsdb/config.json
+
+### start mindsdb
 in terminal
 
 > python -m mindsdb --api=http,mysql --config=config.json
 
+### acess mindsdb GUI
+http://127.0.0.1:47334/
+
+## Create dataset
 in mindsdb GUI Datasets
 > database\
 > datasource name: heart_failure\
 > database: db_base\
 > query: select * from heart_failure
 
+## Create predictor
 in mindsdb GUI Predictors
 > train new\
 > from: heart_failure\
@@ -59,6 +79,7 @@ in mindsdb GUI Predictors
 > select death_event to be predicted\
 > train
 
+## Predict
 in mindsdb GUI Query
 > new query\
 > from: heart_failure_model\
